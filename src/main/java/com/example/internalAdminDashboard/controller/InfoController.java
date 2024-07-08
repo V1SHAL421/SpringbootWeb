@@ -2,9 +2,11 @@ package com.example.internalAdminDashboard.controller;
 
 import com.example.internalAdminDashboard.model.User;
 import com.example.internalAdminDashboard.repository.UserRepository;
+import com.example.internalAdminDashboard.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,37 +16,45 @@ import java.util.List;
 public class InfoController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InfoController.class);
+    private final UserService userService;
     @Autowired
-    private final UserRepository userRepository;
-
-    public InfoController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public InfoController(UserService userService) {
+        this.userService = userService;
     }
 
 //     This is for client-side rendering approach
     @GetMapping("/users")
-    public List<User> getAllUsers() {
-        LOGGER.info("getAllUsers accessed!");
-            return userRepository.findAll();
-
+    public ResponseEntity<List<User>> GetUsers() {
+        List<User> users = userService.getAllUsers();
+        LOGGER.info("Users returned from GetUsers() is {}", users);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{name}")
-    public User getUserByName(@RequestParam String name) {
-        LOGGER.info("getUserByName accessed");
-        return userRepository.findUserByName(name);
+    public ResponseEntity<User> GetUserFromName(@PathVariable String name) {
+        User user = userService.getUserByName(name);
+        LOGGER.info("User returned from GetUserFromName is {}", user);
+        return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/age")
-    public List<User> getUsersByAge(@RequestParam Integer age) {
-        return userRepository.findUsersByAge(age);
+    @GetMapping("/age/{age}")
+    public ResponseEntity<List<User>> GetUsersByAge(@PathVariable String age) {
+        List<User> users = userService.getUsersByAge(Integer.parseInt(age));
+        LOGGER.info("getUsersByAge accessed with age: {}", age);
+        return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/{name}")
-    public String postUser(@RequestBody User user) {
-        this.user = user;
-        return "User successfully created";
-    }
+//    @PostMapping("/create")
+//    public User createUser(@RequestBody User user) {
+//        LOGGER.info("createUser is called with the user: {}", user);
+//        return userRepository.save(user);
+//    }
+
+//    @PostMapping("/{name}")
+//    public String postUser(@RequestBody User user) {
+//        this.user = user;
+//        return "User successfully created";
+//    }
 }
 
 
