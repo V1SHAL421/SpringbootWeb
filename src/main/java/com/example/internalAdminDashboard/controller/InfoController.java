@@ -2,28 +2,36 @@ package com.example.internalAdminDashboard.controller;
 
 import com.example.internalAdminDashboard.model.User;
 import com.example.internalAdminDashboard.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 public class InfoController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(InfoController.class);
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public InfoController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 //     This is for client-side rendering approach
     @GetMapping("/users")
     public List<User> getAllUsers() {
+        LOGGER.info("getAllUsers accessed!");
             return userRepository.findAll();
 
     }
 
     @GetMapping("/{name}")
     public User getUserByName(@RequestParam String name) {
+        LOGGER.info("getUserByName accessed");
         return userRepository.findUserByName(name);
     }
 
@@ -32,6 +40,11 @@ public class InfoController {
         return userRepository.findUsersByAge(age);
     }
 
+    @PostMapping("/{name}")
+    public String postUser(@RequestBody User user) {
+        this.user = user;
+        return "User successfully created";
+    }
 }
 
 
