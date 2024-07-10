@@ -1,7 +1,7 @@
 package com.example.internalAdminDashboard.controller;
 
+import com.example.internalAdminDashboard.dto.UserDTO;
 import com.example.internalAdminDashboard.model.User;
-import com.example.internalAdminDashboard.repository.UserRepository;
 import com.example.internalAdminDashboard.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,22 +24,22 @@ public class InfoController {
 
 //     This is for client-side rendering approach
     @GetMapping("/users")
-    public ResponseEntity<List<User>> GetUsers() {
-        List<User> users = userService.getAllUsers();
+    public ResponseEntity<List<UserDTO>> GetUsers() {
+        List<UserDTO> users = userService.getAllUsers();
         LOGGER.info("Users returned from GetUsers() is {}", users);
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<User> GetUserFromName(@PathVariable String name) {
-        User user = userService.getUserByName(name);
+    public ResponseEntity<UserDTO> GetUserFromName(@PathVariable String name) {
+        UserDTO user = userService.getUserByName(name);
         LOGGER.info("User returned from GetUserFromName is {}", user);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/age/{age}")
-    public ResponseEntity<List<User>> GetUsersByAge(@PathVariable String age) {
-        List<User> users = userService.getUsersByAge(Integer.parseInt(age));
+    public ResponseEntity<List<UserDTO>> GetUsersByAge(@PathVariable String age) {
+        List<UserDTO> users = userService.getUsersByAge(Integer.parseInt(age));
         LOGGER.info("getUsersByAge accessed with age: {}", age);
         return ResponseEntity.ok(users);
     }

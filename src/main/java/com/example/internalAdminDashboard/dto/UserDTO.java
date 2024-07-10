@@ -1,23 +1,15 @@
-package com.example.internalAdminDashboard.model;
+package com.example.internalAdminDashboard.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "profiles")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+public class UserDTO {
     private Long id; // We use the wrapper class because the ID may not be set before persisting
 
     private String name;
 
-    private Integer age; // We use the wrapper class because primitive types have default values - not null
+    private Integer age;
 
-    public User() {}
+    public UserDTO() {}
 
-    public User(String name, Integer age) {
+    public UserDTO(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
