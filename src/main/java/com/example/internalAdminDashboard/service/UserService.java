@@ -47,7 +47,7 @@ public class UserService {
         LOGGER.info("getUserById accessed with id: {}", id);
         User user = userRepository.findUserById(id);
         if (user == null) {
-            throw new UserNotFoundException("No users with this age");
+            throw new UserNotFoundException("No users with this id");
         }
         return userHelpers.entityToUserDTO(user);
     }
