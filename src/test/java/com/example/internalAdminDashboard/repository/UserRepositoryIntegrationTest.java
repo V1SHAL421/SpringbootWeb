@@ -1,19 +1,15 @@
-package com.example.internalAdminDashboard;
+package com.example.internalAdminDashboard.repository;
 
 import com.example.internalAdminDashboard.model.User;
-import com.example.internalAdminDashboard.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -74,5 +70,15 @@ public class UserRepositoryIntegrationTest {
         LOGGER.info("The users returned are {}", users);
 
         assertThat(users.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void retrieveUserById() {
+        userRepository.save(new User("Ben", 20));
+        userRepository.save(new User("Vishal", 20));
+        userRepository.save(new User("Ryan", 30));
+        User user = userRepository.findUserByName("Vishal");
+        User user2 = userRepository.findUserById(user.getId());
+        assertThat(user).isEqualTo(user2);
     }
 }

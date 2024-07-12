@@ -23,6 +23,7 @@ public class InfoController {
     }
 
 //     This is for client-side rendering approach
+
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> GetUsers() {
         List<UserDTO> users = userService.getAllUsers();
