@@ -7,11 +7,13 @@ import com.example.internalAdminDashboard.service.LoanService;
 import com.example.internalAdminDashboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component // Needs to be labelled as a component for Spring Boot to scan it
+@Profile("!test") // Active when the profile is not test
 public class DatabaseLoader implements CommandLineRunner {
     private final UserRepository userRepository;
     private final LoanService loanService;

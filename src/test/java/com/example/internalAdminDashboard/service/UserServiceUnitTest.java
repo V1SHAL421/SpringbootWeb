@@ -1,6 +1,7 @@
 package com.example.internalAdminDashboard.service;
 
 import com.example.internalAdminDashboard.dto.UserDTO;
+import com.example.internalAdminDashboard.exception.UserNotFoundException;
 import com.example.internalAdminDashboard.helper.UserHelpers;
 import com.example.internalAdminDashboard.model.User;
 import com.example.internalAdminDashboard.repository.UserRepository;
@@ -27,6 +28,12 @@ public class UserServiceUnitTest {
 
     @InjectMocks
     private UserService userService;
+
+    @Test
+    public void testGetUserFailed() {
+        when(userRepository.findAll()).thenThrow(new UserNotFoundException("No users in database"));
+        assertThrows(UserNotFoundException.class, () -> userService.getAllUsers());
+    }
 
     @Test
     public void testGetOneUser() {
@@ -74,6 +81,15 @@ public class UserServiceUnitTest {
     }
 
     @Test
+    public void testGetUserByIdFailed() {
+        User user = new User("Tim", 19);
+        UserDTO expectedUserDTO = new UserDTO(user.getName(), user.getAge());
+        Long incorrectId = 100L;
+        when(userRepository.findUserById(incorrectId)).thenThrow(new UserNotFoundException("No users in database"));
+        assertThrows(UserNotFoundException.class, () -> userService.getUserById(incorrectId));
+    }
+
+    @Test
     public void testGetOneUserById() {
         User user = new User("Tim", 19);
         UserDTO expectedUserDTO = new UserDTO(user.getName(), user.getAge());
@@ -85,6 +101,15 @@ public class UserServiceUnitTest {
         assertNotNull(actualUserDTO);
         assertEquals("Tim", actualUserDTO.getName());
 
+    }
+
+    @Test
+    public void testGetUserByNameFailed() {
+        User user = new User("Tim", 19);
+        UserDTO expectedUserDTO = new UserDTO(user.getName(), user.getAge());
+        String incorrectName = "Jack";
+        when(userRepository.findUserByName(incorrectName)).thenThrow(new UserNotFoundException("No users in database"));
+        assertThrows(UserNotFoundException.class, () -> userService.getUserByName(incorrectName));
     }
 
     @Test
@@ -102,6 +127,15 @@ public class UserServiceUnitTest {
         assertEquals("Ben", actualUserDTO.getName());
         assertEquals(22, actualUserDTO.getAge());
 
+    }
+
+    @Test
+    public void testGetUserByAgeFailed() {
+        User user = new User("Tim", 19);
+        UserDTO expectedUserDTO = new UserDTO(user.getName(), user.getAge());
+        Integer incorrectAge = 1;
+        when(userRepository.findUsersByAge(incorrectAge)).thenThrow(new UserNotFoundException("No users in database"));
+        assertThrows(UserNotFoundException.class, () -> userService.getUsersByAge(incorrectAge));
     }
 
     @Test
