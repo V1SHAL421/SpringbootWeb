@@ -52,7 +52,7 @@ public class UserServiceUnitTest {
         assertNotNull(actualUsersDTOs);
         assertFalse(actualUsersDTOs.isEmpty());
         assertEquals(expectedUserDTOs.size(), actualUsersDTOs.size());
-        assertEquals("Tim", actualUsersDTOs.get(0).getName());
+        assertEquals("Tim", actualUsersDTOs.getFirst().getName());
 
     }
 

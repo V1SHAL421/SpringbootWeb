@@ -22,12 +22,10 @@ public class LoanService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoanService.class);
     private final LoanRepository loanRepository;
     private final LoanHelpers loanHelpers;
-    private final UserService userService;
 
     @Autowired
-    public LoanService(LoanRepository loanRepository, UserService userService, LoanHelpers loanHelpers) {
+    public LoanService(LoanRepository loanRepository, LoanHelpers loanHelpers) {
         this.loanRepository = loanRepository;
-        this.userService = userService;
         this.loanHelpers = loanHelpers;
     }
 

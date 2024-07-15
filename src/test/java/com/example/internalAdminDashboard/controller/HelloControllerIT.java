@@ -1,4 +1,4 @@
-package com.example.internalAdminDashboard;
+package com.example.internalAdminDashboard.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
