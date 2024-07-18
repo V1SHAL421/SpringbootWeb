@@ -72,7 +72,7 @@ public class LoanServiceIT {
         assertNotNull(loanDTOs);
         assertFalse(loanDTOs.isEmpty());
         assertEquals(loanDTOs.size(), 3);
-        assertEquals(loanDTOs.getFirst().getUser().getName(), "Tim");
+        assertEquals(loanDTOs.get(0).getUser().getName(), "Tim");
 
     }
 
@@ -108,7 +108,7 @@ public class LoanServiceIT {
         assertNotNull(loanDTOs);
         assertFalse(loanDTOs.isEmpty());
         assertEquals(loanDTOs.size(), 2);
-        assertEquals(loanDTOs.getFirst().getUser().getName(), "Tim");
+        assertEquals(loanDTOs.get(0).getUser().getName(), "Tim");
     }
 
     @Test
@@ -130,7 +130,7 @@ public class LoanServiceIT {
         loanService.createAndAddLoanToUser(loan, user);
 
         assertEquals(loanRepository.findAll().size(), 1);
-        assertEquals(loanRepository.findAll().getFirst().getUser(), user);
+        assertEquals(loanRepository.findAll().get(0).getUser(), user);
 
     }
 

@@ -78,10 +78,10 @@ public class LoanControllerIT {
         LOGGER.info("The expected response is: {}", loanDTOS);
         assertFalse(Objects.requireNonNull(response.getBody()).isEmpty());
         assertThat(response.getBody()).size().isEqualTo(loanDTOS.size());
-        assertThat(response.getBody().getFirst().getAmount()).isEqualTo(loanDTOS.getFirst().getAmount());
-        assertThat(response.getBody().getFirst().getLoanPeriod()).isEqualTo(loanDTOS.getFirst().getLoanPeriod());
-        assertThat(response.getBody().getLast().getAmount()).isEqualTo(loanDTOS.getLast().getAmount());
-        assertThat(response.getBody().getLast().getLoanPeriod()).isEqualTo(loanDTOS.getLast().getLoanPeriod());
+        assertThat(response.getBody().get(0).getAmount()).isEqualTo(loanDTOS.get(0).getAmount());
+        assertThat(response.getBody().get(0).getLoanPeriod()).isEqualTo(loanDTOS.get(0).getLoanPeriod());
+        assertThat(response.getBody().get(1).getAmount()).isEqualTo(loanDTOS.get(1).getAmount());
+        assertThat(response.getBody().get(1).getLoanPeriod()).isEqualTo(loanDTOS.get(1).getLoanPeriod());
     }
 
     @Test
@@ -96,10 +96,10 @@ public class LoanControllerIT {
         LOGGER.info("The expected response is: {}", loanDTOS);
         assertFalse(Objects.requireNonNull(response.getBody()).isEmpty());
         assertThat(response.getBody()).size().isEqualTo(loanDTOS.size());
-        assertThat(response.getBody().getFirst().getAmount()).isEqualTo(loanDTOS.getFirst().getAmount());
-        assertThat(response.getBody().getFirst().getLoanPeriod()).isEqualTo(loanDTOS.getFirst().getLoanPeriod());
-        assertThat(response.getBody().getLast().getAmount()).isEqualTo(loanDTOS.getLast().getAmount());
-        assertThat(response.getBody().getLast().getLoanPeriod()).isEqualTo(loanDTOS.getLast().getLoanPeriod());
+        assertThat(response.getBody().get(0).getAmount()).isEqualTo(loanDTOS.get(0).getAmount());
+        assertThat(response.getBody().get(0).getLoanPeriod()).isEqualTo(loanDTOS.get(0).getLoanPeriod());
+        assertThat(response.getBody().get(1).getAmount()).isEqualTo(loanDTOS.get(1).getAmount());
+        assertThat(response.getBody().get(1).getLoanPeriod()).isEqualTo(loanDTOS.get(1).getLoanPeriod());
     }
 
 }

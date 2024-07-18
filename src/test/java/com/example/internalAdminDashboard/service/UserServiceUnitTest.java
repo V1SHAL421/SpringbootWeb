@@ -52,7 +52,7 @@ public class UserServiceUnitTest {
         assertNotNull(actualUsersDTOs);
         assertFalse(actualUsersDTOs.isEmpty());
         assertEquals(expectedUserDTOs.size(), actualUsersDTOs.size());
-        assertEquals("Tim", actualUsersDTOs.getFirst().getName());
+        assertEquals("Tim", actualUsersDTOs.get(0).getName());
 
     }
 
@@ -157,7 +157,7 @@ public class UserServiceUnitTest {
         assertNotNull(actualUsersDTOs);
         assertFalse(actualUsersDTOs.isEmpty());
         assertEquals(expectedUserDTOs.size(), actualUsersDTOs.size());
-        assertEquals("Nick", actualUsersDTOs.getFirst().getName());
+        assertEquals("Nick", actualUsersDTOs.get(0).getName());
 
     }
 
@@ -180,8 +180,8 @@ public class UserServiceUnitTest {
         assertNotNull(actualUsersDTOs);
         assertFalse(actualUsersDTOs.isEmpty());
         assertEquals(expectedUserDTOs.size(), actualUsersDTOs.size());
-        assertEquals("Eric", actualUsersDTOs.getFirst().getName());
-        assertEquals("Nick", actualUsersDTOs.getLast().getName());
+        assertEquals("Eric", actualUsersDTOs.get(0).getName());
+        assertEquals("Nick", actualUsersDTOs.get(1).getName());
 
     }
 

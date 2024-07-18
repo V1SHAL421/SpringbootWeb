@@ -70,7 +70,7 @@ public class LoanServiceUnitTest {
         assertNotNull(actualLoanDTOs);
         assertFalse(actualLoanDTOs.isEmpty());
         assertEquals(expectedLoanDTOs.size(), actualLoanDTOs.size());
-        assertEquals(expectedLoanDTOs.getFirst().getUser().getName(), actualLoanDTOs.getFirst().getUser().getName());
+        assertEquals(expectedLoanDTOs.get(0).getUser().getName(), actualLoanDTOs.get(0).getUser().getName());
 
     }
 
@@ -99,7 +99,7 @@ public class LoanServiceUnitTest {
         assertNotNull(actualLoanDTOs);
         assertFalse(actualLoanDTOs.isEmpty());
         assertEquals(expectedLoanDTOs.size(), actualLoanDTOs.size());
-        assertEquals(expectedLoanDTOs.getFirst().getUser().getName(), actualLoanDTOs.getFirst().getUser().getName());
+        assertEquals(expectedLoanDTOs.get(0).getUser().getName(), actualLoanDTOs.get(0).getUser().getName());
 
     }
 
@@ -138,7 +138,7 @@ public class LoanServiceUnitTest {
         assertNotNull(actualLoanDTOs);
         assertFalse(actualLoanDTOs.isEmpty());
         assertEquals(expectedLoanDTOs.size(), actualLoanDTOs.size());
-        assertEquals(expectedLoanDTOs.getFirst().getUser().getName(), actualLoanDTOs.getFirst().getUser().getName());
+        assertEquals(expectedLoanDTOs.get(0).getUser().getName(), actualLoanDTOs.get(0).getUser().getName());
 
     }
 
@@ -167,7 +167,7 @@ public class LoanServiceUnitTest {
         assertNotNull(actualLoanDTOs);
         assertFalse(actualLoanDTOs.isEmpty());
         assertEquals(expectedLoanDTOs.size(), actualLoanDTOs.size());
-        assertEquals(expectedLoanDTOs.getFirst().getUser().getName(), actualLoanDTOs.getFirst().getUser().getName());
+        assertEquals(expectedLoanDTOs.get(0).getUser().getName(), actualLoanDTOs.get(0).getUser().getName());
 
     }
 

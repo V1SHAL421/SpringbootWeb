@@ -56,7 +56,7 @@ public class UserServiceIT {
         assertNotNull(userDTOS);
         assertFalse(userDTOS.isEmpty());
         assertEquals(userDTOS.size(), 1);
-        assertEquals("Tim", userDTOS.getFirst().getName());
+        assertEquals("Tim", userDTOS.get(0).getName());
 
     }
 
@@ -72,7 +72,7 @@ public class UserServiceIT {
         assertNotNull(userDTOS);
         assertFalse(userDTOS.isEmpty());
         assertEquals(userDTOS.size(), 2);
-        assertEquals("Sara", userDTOS.getFirst().getName());
+        assertEquals("Sara", userDTOS.get(0).getName());
 
     }
 
@@ -136,7 +136,7 @@ public class UserServiceIT {
         assertNotNull(userDTOS);
         assertFalse(userDTOS.isEmpty());
         assertEquals(userDTOS.size(), 1);
-        assertEquals("Tim", userDTOS.getFirst().getName());
+        assertEquals("Tim", userDTOS.get(0).getName());
 
     }
 
@@ -155,7 +155,7 @@ public class UserServiceIT {
         assertNotNull(userDTOS);
         assertFalse(userDTOS.isEmpty());
         assertEquals(userDTOS.size(), 3);
-        assertEquals("Jess", userDTOS.getFirst().getName());
+        assertEquals("Jess", userDTOS.get(0).getName());
 
     }
 
