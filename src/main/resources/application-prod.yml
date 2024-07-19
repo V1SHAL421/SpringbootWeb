@@ -1,0 +1,27 @@
+#YAML files use a tree-like structure which helps with visualizing nested configs
+
+#Application Settings
+spring:
+  application:
+    name: internalAdminDashboard
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: SA
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2console
+server:
+  port:
+    ${PORT:8080}
