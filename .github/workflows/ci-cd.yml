@@ -28,7 +28,7 @@ jobs:
     - name: Deploy to Prod
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: |
-        git remote add heroku https://git.heroku.com/springboot-loans.git
+        git remote add heroku https://${{ secrets.HEROKU_API_KEY }}@git.heroku.com/springboot-loans.git
         git push heroku master
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
