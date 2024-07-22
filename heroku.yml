@@ -4,4 +4,4 @@ build:
 release:
   image: web
 run:
-  web: java -jar /app/target/springboot-loans-0.1.0.jar
+  web: java -Dserver.port=${PORT} -jar /app/target/springboot-loans-0.1.0.jar
