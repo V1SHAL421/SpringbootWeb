@@ -1,0 +1,14 @@
+name: springboot_loan_app_backend
+
+services:
+  web:
+    image: loan_app_backend
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./target:/app/target
+# Maps /target dir to /app/target dir in container, allowing live reloading of my app (allows changes to be reflected without rebuilding container)
+    restart: on-failure

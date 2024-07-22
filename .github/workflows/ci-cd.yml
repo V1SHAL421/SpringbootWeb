@@ -1,5 +1,6 @@
 name: Java CI/CD
 
+#Triggers the workflow when push/pull request is made to master
 on:
   push:
     branches: [master]
@@ -9,30 +10,53 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+#    Job runs on latest Ubuntu runner
 
     steps:
     - uses: actions/checkout@v2
+#    Checks out repo under github workspace so workflow can access it
 
+#Sets up Java env
     - name: Set up JDK 17
       uses: actions/setup-java@v2
       with:
         java-version: '17'
         distribution: 'adopt'
 
+#Package project into a jar file
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+#Build Docker image from Dockerfile and tag with commit sha for easy rollbacks
+    - name: Build Docker Image
+      run: docker build -t springboot-loans:{{ github.sha }} .
 
     - name: Run Tests
       run: mvn test
 
-    - name: Deploy to Prod
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      uses: akhileshns/heroku-deploy@v3.12.12  # This is a community action for deploying to Heroku
-      with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: "springboot-loans" 
-        heroku_email: "vishalmkumar3@gmail.com"
+    - name: Log in to Heroku Container Registry
+      run: heroku container:login
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+    - name: Push Docker Image to Heroku
+      run: heroku container:push web --app springboot-loans --arg JAR_FILE=/app/target/*.jar
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+#Releases pushed Docker image to Heroku app
+    - name: Release Image to Heroku
+      run: heroku container:release web --app springboot-loans
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+#    - name: Deploy to Prod
+#      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+#      uses: akhileshns/heroku-deploy@v3.12.12  # This is a community action for deploying to Heroku
+#      with:
+#        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+#        heroku_app_name: "springboot-loans"
+#        heroku_email: "vishalmkumar3@gmail.com"
+#      env:
+#        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
     

@@ -1,0 +1,7 @@
+build:
+  docker:
+    web: Dockerfile
+release:
+  image: web
+run:
+  web: java -jar /app/target/springboot-loans-0.1.0.jar
