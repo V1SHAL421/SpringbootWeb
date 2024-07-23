@@ -29,7 +29,7 @@ jobs:
 
 #Build Docker image from Dockerfile and tag with commit sha for easy rollbacks
     - name: Build Docker Image
-      run: docker build -t springboot-loans:{{ github.sha }} .
+      run: docker build -t springboot-loans:${{ github.sha }} .
 
     - name: Run Tests
       run: mvn test
