@@ -20,8 +20,9 @@ FROM openjdk:17-slim
 #Copy JAR from build stage to create runtime container
 COPY --from=build /app/target/*.jar /app/app.jar
 
-#Expose port the app runs on
-EXPOSE 8080
+##Expose port the app runs on
+#EXPOSE 8080, we do not expose this because Heroku assigns a port dynamically
 
 #Command to run app
-CMD ["java", "-jar", "/app/app.jar"]
+CMD ["sh", "-c", "java -Dserver.port=$PORT -jar /app/app.jar"]
+#sh -c ensures that the port env var is correctly interpreted at runtime
