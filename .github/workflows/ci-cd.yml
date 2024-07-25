@@ -36,9 +36,10 @@ jobs:
 ##        Executes Checkstyle to check code against set rules
 
       - name: Run tests
-        run: docker-compose -f docker-compose.yml exec web mvn test
+        run: docker-compose -f docker-compose.yml exec -T web mvn test
         # Executes your tests within the running 'web' service container
-
+#        -T is needed because a CI/CD pipeline is non interactive (no TTY (CLI))
+#        -f means to use this specific filename instead of default (even though in our case they are the same)
       - name: Clean up Docker Compose
         if: always()
         run: docker-compose -f docker-compose.yml down
