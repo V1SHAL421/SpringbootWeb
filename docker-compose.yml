@@ -2,7 +2,7 @@ services:
   web:
     image: loan_app_backend
     ports:
-      - "8080:8080"
+      - "${PORT:-8080}:8080"
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,3 +10,4 @@ services:
       - ./target:/app/target
 # Maps /target dir to /app/target dir in container, allowing live reloading of my app (allows changes to be reflected without rebuilding container)
     restart: on-failure
+    command: ["java", "-Dserver.port=$PORT", "-jar", "/app/app.jar"]
