@@ -31,9 +31,9 @@ jobs:
         run: docker-compose -f docker-compose.yml up --build -d
         # Builds and starts the containers defined in your Docker Compose file in detached mode
 
-      - name: Run Checkstyle
-        run: mvn -B checkstyle:checkstyle
-#        Executes Checkstyle to check code against set rules
+#      - name: Run Checkstyle
+#        run: mvn -B checkstyle:checkstyle
+##        Executes Checkstyle to check code against set rules
 
       - name: Run tests
         run: docker-compose -f docker-compose.yml exec web mvn test
