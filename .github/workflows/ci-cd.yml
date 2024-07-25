@@ -14,6 +14,13 @@ jobs:
       - uses: actions/checkout@v2
         # Checks out your repository under $GITHUB_WORKSPACE, so your workflow can access it
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+#        Sets up Java 17 to ensure env is correct for Maven and other Java operations
+
       - name: Run Tests
         run: mvn test
 
@@ -33,6 +40,19 @@ jobs:
       - name: Build with Docker Compose
         run: docker-compose -f docker-compose.yml up --build -d
         # Builds and starts the containers defined in your Docker Compose file in detached mode
+      - name: Clean up Docker Compose
+        if: always()
+        run: docker-compose -f docker-compose.yml down
+
+
+
+
+
+
+
+
+
+
 
 #      - name: Run Checkstyle
 #        run: mvn -B checkstyle:checkstyle
@@ -43,9 +63,7 @@ jobs:
 #        # Executes your tests within the running 'web' service container
 ##        -T is needed because a CI/CD pipeline is non interactive (no TTY (CLI))
 ##        -f means to use this specific filename instead of default (even though in our case they are the same)
-      - name: Clean up Docker Compose
-        if: always()
-        run: docker-compose -f docker-compose.yml down
+
         # Stops and removes containers, networks, volumes, and images created by up
 
 
