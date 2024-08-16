@@ -24,6 +24,7 @@ public class InfoController {
 
 //     This is for client-side rendering approach
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> GetUsers() {
         List<UserDTO> users = userService.getAllUsers();
@@ -31,6 +32,7 @@ public class InfoController {
         return ResponseEntity.ok(users);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{name}")
     public ResponseEntity<UserDTO> GetUserFromName(@PathVariable String name) {
         UserDTO user = userService.getUserByName(name);
@@ -38,6 +40,7 @@ public class InfoController {
         return ResponseEntity.ok(user);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/age/{age}")
     public ResponseEntity<List<UserDTO>> GetUsersByAge(@PathVariable String age) {
         List<UserDTO> users = userService.getUsersByAge(Integer.parseInt(age));
