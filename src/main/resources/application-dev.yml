@@ -20,3 +20,12 @@ spring:
     console:
       enabled: true
       path: /h2console
+
+    logging:
+      level:
+        org:
+          springframework:
+            web: DEBUG
+      file:
+        name: application.log
+        path: /
