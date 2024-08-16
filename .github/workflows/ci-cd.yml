@@ -39,12 +39,12 @@ jobs:
             ${{ runner.os }}-buildx-
         # Caches Docker layers to speed up subsequent builds
 
-      - name: Build with Docker Compose
-        run: docker-compose -f docker-compose.yml up --build -d
-        # Builds and starts the containers defined in your Docker Compose file in detached mode
-      - name: Clean up Docker Compose
-        if: always()
-        run: docker-compose -f docker-compose.yml down
+      # - name: Build with Docker Compose
+      #   run: docker-compose -f docker-compose.yml up --build -d
+      #   # Builds and starts the containers defined in your Docker Compose file in detached mode
+      # - name: Clean up Docker Compose
+      #   if: always()
+      #   run: docker-compose -f docker-compose.yml down
 
 
 
